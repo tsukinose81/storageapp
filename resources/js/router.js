@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import login from "./components/auth/login.vue";
 import register from "./components/auth/register.vue";
 import about from "./components/auth/about.vue";
+import user from "./components/user.vue";
  
 const router = new VueRouter({
     mode: "history",
@@ -17,16 +18,21 @@ const router = new VueRouter({
             meta: { guestOnly: true }
         },
         {
-          path: "/register",
-          name: "register",
-          component: register,
-          meta: { guestOnly: true }
+            path: "/register",
+            name: "register",
+            component: register,
+            meta: { guestOnly: true }
         },
         {
             path: "/about",
             name: "about",
             component: about,
             meta: { authOnly: true }
+        },
+        {
+            path: "/:user_name",
+            name: "user",
+            component: user
         }
     ]
 });
