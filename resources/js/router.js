@@ -7,6 +7,7 @@ import login from "./components/auth/login.vue";
 import register from "./components/auth/register.vue";
 import about from "./components/auth/about.vue";
 import user from "./components/user.vue";
+import notfound from "./components/notfound.vue";
  
 const router = new VueRouter({
     mode: "history",
@@ -33,6 +34,11 @@ const router = new VueRouter({
             path: "/:user_name",
             name: "user",
             component: user
+        },
+        {
+            path: "/*",
+            name: "notfound",
+            component: notfound
         }
     ]
 });
