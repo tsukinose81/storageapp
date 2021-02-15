@@ -2,9 +2,9 @@
     <div>
         <form class="login-form" @submit.prevent="register">
             <div>
-                <input type="text" placeholder="Name" v-model="name" />
-                <span v-if="errors.name">
-                    {{ errors.name[0] }}
+                <input type="text" placeholder="UserID" v-model="user_id" />
+                <span v-if="errors.user_id">
+                    {{ errors.user_id[0] }}
                 </span>
             </div>
 
@@ -31,7 +31,7 @@
 export default {
     data() {
         return {
-            name: "",
+            user_id: "",
             email: "",
             password: "",
             errors: []
@@ -42,7 +42,7 @@ export default {
             axios.get("/sanctum/csrf-cookie").then(response => {
                 axios
                     .post("/api/register", {
-                        name: this.name,
+                        user_id: this.user_id,
                         email: this.email,
                         password: this.password
                     })

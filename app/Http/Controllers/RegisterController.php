@@ -20,7 +20,7 @@ class RegisterController extends Controller
         /** @var Illuminate\Validation\Validator $validator */
         Log::debug($request);
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'user_id' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ]);
@@ -30,7 +30,7 @@ class RegisterController extends Controller
         }
 
         User::create([
-            'name' =>  $request->name,
+            'user_id' =>  $request->user_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
