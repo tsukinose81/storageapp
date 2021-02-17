@@ -7,6 +7,8 @@ import login from "./components/auth/login.vue";
 import register from "./components/auth/register.vue";
 import about from "./components/auth/about.vue";
 import user from "./components/user.vue";
+import create from "./components/storage/create.vue";
+import storage from "./components/storage/storage.vue";
 import notfound from "./components/notfound.vue";
  
 const router = new VueRouter({
@@ -31,9 +33,20 @@ const router = new VueRouter({
             meta: { authOnly: true }
         },
         {
+            path: "/create",
+            name: "create",
+            component: create,
+            meta: { authOnly: true }
+        },
+        {
             path: "/:user_name",
             name: "user",
             component: user
+        },
+        {
+            path: "/:user_name/:storage_name",
+            name: "storage",
+            component: storage
         },
         {
             path: "/*",

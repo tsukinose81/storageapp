@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use \Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -16,12 +19,16 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Login successful'], 200);
+            $user = User::whereEmail($request->email)->first();
+
+            $user->tokens()->delete();
+            $token = $user->createToken("login:user{$user->id}");
+            $clientToken = $token->plainTextToken;
+            // Log::debug($clientToken);
+
+            return $clientToken;
+            // return response()->json(['token' => $token ], Response::HTTP_OK);
         }
-        
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect'],
-        ]);
     }
 
     public function logout()

@@ -38,8 +38,9 @@ export default {
                         password: this.password
                     })
                     .then(response => {
-                        console.log(response);
+                        // console.log(response.data);
                         localStorage.setItem("auth", "ture");
+                        localStorage.setItem("api-token", response.data);
                         this.$router.push("/about");
                     })
                     .catch(error => {

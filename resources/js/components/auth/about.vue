@@ -14,7 +14,14 @@ export default {
         };
     },
     mounted() {
-        axios.get("/api/user").then(response => {
+        const bearerToken = localStorage.getItem("api-token");
+        // console.log(bearerToken);
+        axios.get("/api/user", {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`,
+            },
+        }).then(response => {
+            // console.log(response);
             this.user = response.data;
         });
     },
