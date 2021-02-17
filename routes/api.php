@@ -22,10 +22,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function(Request $request){
         return $request->user();
     });
+    Route::get('/user_id', function(Request $request){
+        return $request->user()->user_id;
+    });
 });
 
+Route::post('/storage/create', [StorageController::class, 'create']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::post('/register', [RegisterController::class, 'register']);
-
-// Route::post('/storage/create', [StorageController::class, 'create']);

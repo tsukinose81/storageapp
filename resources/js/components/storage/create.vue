@@ -1,13 +1,13 @@
 <template>
     <div>
-        <form class="form" @submit.prevent="user">
+        <form class="form" @submit.prevent="register">
             <div>
                 <input type="text" placeholder="Storage name" v-model="storage_name" />
             </div>
             <div>
-                <input type="radio" name="public" value="1" id="public">
+                <input type="radio" name="public" value="1" id="public" v-model="pub">
                 <label for="public" class="public">Pubulic</label>
-                <input type="radio" name="public" value="0" id="private">
+                <input type="radio" name="public" value="1" id="private" v-model="pub">
                 <label for="private" class="public">Pubulic</label>
                 <p>Note: Public only</p>
             </div>
@@ -22,35 +22,34 @@ export default {
         return {
             user_id: "",
             storage_name: "",
-            public: "",
+            pub: "",
         };
     },
     methods: {
-        user() {
+        register() {
             const bearerToken = localStorage.getItem("api-token");
-            axios.get("/api/user", {
+            axios.get("/api/user_id", {
                 headers: {
                     Authorization: `Bearer ${bearerToken}`,
                 },
             }).then(response => {
-                    // console.log(response);
-            }).catch(error => {
-                // console.log('error!!!!!');
-                console.log(error);
-            });
-        },
-        register() {
-            axios.post("/api/storage/create", {
+                this.user_id = response.data;
+
+                axios.post("/api/storage/create", {
                 user_id: this.user_id,
                 storage_name: this.storage_name,
-                public: this.public
-            }).then(response => {
-                console.log(response);
-                this.$router.push("/:user_id/:storage_name");
-            })
-            .catch(error => {
+                public: this.pub
+                }).then(response => {
+                    // console.log(response);
+                    this.$router.push(`/${this.user_id}/${this.storage_name}`);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }).catch(error => {
                 console.log(error);
             });
+            
         }
     }
 }
