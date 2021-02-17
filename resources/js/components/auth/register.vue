@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="login-form" @submit.prevent="register">
+        <form class="form" @submit.prevent="register">
             <div>
                 <input type="text" placeholder="Email" v-model="email" />
                 <span v-if="errors.email">
@@ -47,8 +47,9 @@ export default {
                         password: this.password
                     })
                     .then(response => {
-                        console.log(response);
+                        // console.log(response);
                         localStorage.setItem("auth", "ture");
+                        localStorage.setItem("api-token", response.data);
                         this.$router.push("/about");
                     })
                     .catch(error => {

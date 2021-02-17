@@ -34,7 +34,14 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        
+        $user = User::whereEmail($request->email)->first();
+        $user->tokens()->delete();
+        $token = $user->createToken($user->user_id);
+        $clientToken = $token->plainTextToken;
+        Log::debug($clientToken);
 
-        return response()->json('User registration completed', Response::HTTP_OK);
+        return $clientToken;
+        // return response()->json('User registration completed', Response::HTTP_OK);
     }
 }

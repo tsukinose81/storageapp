@@ -22,7 +22,7 @@ class LoginController extends Controller
             $user = User::whereEmail($request->email)->first();
 
             $user->tokens()->delete();
-            $token = $user->createToken("login:user{$user->id}");
+            $token = $user->createToken($user->user_id);
             $clientToken = $token->plainTextToken;
             // Log::debug($clientToken);
 
