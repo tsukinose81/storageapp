@@ -2,19 +2,19 @@
     <div>
         <form class="login-form" @submit.prevent="register">
             <div>
-                <input type="text" placeholder="UserID" v-model="user_id" />
-                <span v-if="errors.user_id">
-                    {{ errors.user_id[0] }}
-                </span>
-            </div>
-
-            <div>
                 <input type="text" placeholder="Email" v-model="email" />
                 <span v-if="errors.email">
                     {{ errors.email[0] }}
                 </span>
             </div>
  
+            <div>
+                <input type="text" placeholder="UserID" v-model="user_id" />
+                <span v-if="errors.user_id">
+                    {{ errors.user_id[0] }}
+                </span>
+            </div>
+
             <div>
                 <input type="password" placeholder="Password" v-model="password" />
                 <span v-if="errors.password">

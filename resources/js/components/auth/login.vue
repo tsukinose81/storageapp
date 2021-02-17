@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form class="login-form" @submit.prevent="login">
+        <form class="form" @submit.prevent="login">
             <div>
                 <input type="text" placeholder="Email" v-model="email" />
                 <span v-if="errors.email">
@@ -55,13 +55,13 @@ export default {
 body {
     background: rgb(236, 236, 236);
 }
-.login-form {
+.form {
     text-align: center;
 }
-.login-form label {
+.form label {
     min-width: 100px;
 }
-.login-form input {
+.form input {
     height: 40px;
     padding: 8px;
     border: 0;
@@ -73,7 +73,7 @@ body {
     box-shadow:  5px 5px 10px #babdbe,
                 -5px -5px 10px #ffffff;
 }
-.login-form button {
+.form button {
     color: rgb(65, 65, 65);
     min-width: 100px;
     padding: 5px;
@@ -85,7 +85,7 @@ body {
     box-shadow:  5px 5px 10px #999c9c,
                 -5px -5px 10px #ffffff;
 }
-.login-form button:active {
+.form button:active {
     background: #e8eced;
     box-shadow: inset 5px 5px 10px #999c9c,
                 inset -5px -5px 10px #ffffff;
