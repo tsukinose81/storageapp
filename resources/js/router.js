@@ -39,12 +39,12 @@ const router = new VueRouter({
             meta: { authOnly: true }
         },
         {
-            path: "/:user_name",
+            path: "/:user_id",
             name: "user",
             component: user
         },
         {
-            path: "/:user_name/:storage_name",
+            path: "/:user_id/:storage_name",
             name: "storage",
             component: storage
         },
