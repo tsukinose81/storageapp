@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 Route::post('/storage/create', [StorageController::class, 'create']);
+Route::get('/storage/getfile', [StorageController::class, 'getfile']);
 Route::post('/upload/file', [UploadController::class, 'file']);
 
 Route::post('/login', [LoginController::class, 'login']);

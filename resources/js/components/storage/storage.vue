@@ -3,6 +3,7 @@
     <h1>{{ $route.params.user_id + '/' + $route.params.storage_name }}</h1>
     <p><input type="file" v-on:change="fileUpload">file</p>
     <!-- <p><input type="file" name="upfile[]" webkitdirectory v-on:change="folderUpload">folders</p> -->
+    <storagedata-component></storagedata-component>
   </div>
 </template>
 
