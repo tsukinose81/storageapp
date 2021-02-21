@@ -5,7 +5,7 @@ Vue.use(VueRouter);
  
 import login from "./components/auth/login.vue";
 import register from "./components/auth/register.vue";
-import about from "./components/auth/about.vue";
+import account from "./components/auth/account.vue";
 import user from "./components/user.vue";
 import create from "./components/storage/create.vue";
 import storage from "./components/storage/storage.vue";
@@ -27,9 +27,9 @@ const router = new VueRouter({
             meta: { guestOnly: true }
         },
         {
-            path: "/about",
-            name: "about",
-            component: about,
+            path: "/account",
+            name: "account",
+            component: account,
             meta: { authOnly: true }
         },
         {
@@ -69,7 +69,7 @@ router.beforeEach((to, from, next) => {
         }
     } else if (to.matched.some(record => record.meta.guestOnly)) {
         if (isLoggedIn()) {
-            next("/about");
+            next("/account");
         } else {
             next();
         }

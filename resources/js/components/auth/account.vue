@@ -1,8 +1,10 @@
 <template>
-    <div>
-        <p>{{ user.name }}</p>
-        <p>{{ user.email }}</p>
-        <button type="button" @click="logout">ログアウト</button>
+    <div class="form">
+        <p>User ID: {{ user.user_id }}</p>
+        <p>Email: {{ user.email }}</p>
+        <router-link v-bind:to="{name: 'user', params: { user_id: user.user_id }}">MyStorages</router-link><br>
+        <button type="button" @click="logout">Logout</button>
+
     </div>
 </template>
  
@@ -21,7 +23,7 @@ export default {
                 Authorization: `Bearer ${bearerToken}`,
             },
         }).then(response => {
-            // console.log(response);
+            // console.log(response.data);
             this.user = response.data;
         });
     },
@@ -32,6 +34,7 @@ export default {
                 .then(response => {
                     console.log(response);
                     localStorage.removeItem("auth");
+                    localStorage.removeItem("api-token");
                     this.$router.push("/login");
                 })
                 .catch(error => {
@@ -41,3 +44,9 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+a {
+  font-size: 20px;
+}
+</style>

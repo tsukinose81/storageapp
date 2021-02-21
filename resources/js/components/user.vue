@@ -1,13 +1,10 @@
 <template>
   <div class="form">
-    <p>{{ $route.params.user_id }}</p>
+    <h1>{{ $route.params.user_id }}'s Storage List</h1>
     <div v-for="storage in storages" :key="storage.id">
-      <router-link v-bind:to="{name: 'storage', params: { user_id: 2, storage_name: storage.storage_name }}">
-      <span>{{ storage.storage_name }}</span>
-        
+      <router-link v-bind:to="{name: 'storage', params: { user_id: $route.params.user_id, storage_name: storage.storage_name }}">
+        <span>{{ storage.storage_name }}</span>
       </router-link>
-      <!-- <span>{{ storage.id }}</span> -->
-      <!-- <p>{{ storage.storage_name }}</p> -->
     </div>
   </div>
 </template>
@@ -30,3 +27,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  margin: 50px;
+}
+a {
+  color: #5d6268;
+  font-size: 25px;
+}
+div {
+  padding: 3px;
+}
+</style>

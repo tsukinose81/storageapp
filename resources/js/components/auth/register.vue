@@ -50,7 +50,7 @@ export default {
                         // console.log(response);
                         localStorage.setItem("auth", "ture");
                         localStorage.setItem("api-token", response.data);
-                        this.$router.push("/about");
+                        this.$router.push("/account");
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;
