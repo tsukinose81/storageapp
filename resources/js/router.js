@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
  
 Vue.use(VueRouter);
- 
+
+import root from "./components/root.vue";
 import login from "./components/auth/login.vue";
 import register from "./components/auth/register.vue";
 import account from "./components/auth/account.vue";
@@ -14,6 +15,11 @@ import notfound from "./components/notfound.vue";
 const router = new VueRouter({
     mode: "history",
     routes: [
+        {
+            path: "/",
+            name: "root",
+            component: root,
+        },
         {
             path: "/login",
             name: "login",

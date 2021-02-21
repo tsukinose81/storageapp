@@ -10,10 +10,16 @@ use Illuminate\Support\Facades\Storage;
 
 class StorageController extends Controller
 {
+    public function storage_recent()
+    {
+        $storage_recent = \App\Models\Storage::orderBy('id', 'desc')->limit(10)->get();
+        return $storage_recent;
+    }
+
     public function create(Request $request)
     {
         // Log::debug($request);
-        App\Models\Storage::create([
+        \App\Models\Storage::create([
             'user_id' =>  $request->user_id,
             'storage_name' => $request->storage_name,
             'public' => $request->public,

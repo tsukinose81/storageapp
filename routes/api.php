@@ -29,13 +29,14 @@ Route::middleware('auth:sanctum')->group(function(){
         return $request->user()->user_id;
     });
     Route::post('/upload/folder', [UploadController::class, 'folder']);
+    Route::post('/upload/file', [UploadController::class, 'file']);
 });
 
+Route::get('/storage_recent', [StorageController::class, 'storage_recent']);
 Route::get('/storage_list', [UserPageController::class, 'storage_list']);
 Route::post('/storage/create', [StorageController::class, 'create']);
 Route::get('/storage/getfile', [StorageController::class, 'getfile']);
 Route::get('/download', [DownloadController::class, 'download']);
-Route::post('/upload/file', [UploadController::class, 'file']);
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);

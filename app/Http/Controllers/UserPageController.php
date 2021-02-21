@@ -10,7 +10,7 @@ class UserPageController extends Controller
 {
     public function storage_list(Request $request)
     {
-        $storage_list = Storage::where('user_id', $request->user_id)->get();
+        $storage_list = Storage::where('user_id', $request->user_id)->orderBy('id', 'desc')->get();
         return $storage_list;
     }
 }
