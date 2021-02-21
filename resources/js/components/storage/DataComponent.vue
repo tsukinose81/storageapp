@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <h1>testcomponentdata</h1>
+  <div class="storage-data">
     <div v-for="file in files" :key="file.index">
-      <span>{{ file }}</span>
-      <button v-on:click="download(file)">Downloads</button>
+      <span class="file">{{ file }}</span>
+      <button v-on:click="download(file)">Download</button>
     </div>
   </div>
 </template>
@@ -50,3 +49,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.storage-data {
+  margin-top: 100px;
+}
+.file {
+  display: inline-block;
+  margin: 15px;
+  min-width: 350px;
+  font-size: 30px;
+}
+</style>

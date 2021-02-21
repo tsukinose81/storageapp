@@ -15,7 +15,8 @@
                 </span>
             </div>
  
-            <button>Login</button>
+            <button>Login</button><br>
+            <p>Register for an account: <router-link v-bind:to="{name: 'register'}">Register</router-link></p>
         </form>
     </div>
 </template>
@@ -53,8 +54,9 @@ export default {
 </script>
 
 <style>
-body {
-    background: rgb(236, 236, 236);
+body, button {
+    background: #f2f3f7;
+    color: #5d6268;
 }
 .form {
     text-align: center;
@@ -67,28 +69,33 @@ body {
     padding: 8px;
     border: 0;
     margin: 12px;
-    border-radius: 4px;
     font-size: 1.4rem;
     border-radius: 10px;
-    background: #e8eced;
+    background: #f2f3f7;
     box-shadow:  5px 5px 10px #babdbe,
                 -5px -5px 10px #ffffff;
 }
 .form button {
-    color: rgb(65, 65, 65);
     min-width: 100px;
     padding: 5px;
     border: 0;
     margin: 10px;
     font-size: 1.4rem;
     border-radius: 10px;
-    background: #e8eced;
+    background: #f2f3f7;
     box-shadow:  5px 5px 10px #999c9c,
                 -5px -5px 10px #ffffff;
 }
 .form button:active {
-    background: #e8eced;
+    background: #f2f3f7;
     box-shadow: inset 5px 5px 10px #999c9c,
                 inset -5px -5px 10px #ffffff;
+}
+</style>
+
+<style scoped>
+p {
+    font-size: 18px;
+    margin-top: 20px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="form upload">
     <h1>{{ $route.params.user_id + '/' + $route.params.storage_name }}</h1>
-    <p><input type="file" v-on:change="fileUpload">file</p>
+    <input type="file" id="fileup" v-on:change="fileUpload"><label for=fileup>Upload the file</label>
     <!-- <p><input type="file" name="upfile[]" webkitdirectory v-on:change="folderUpload">folders</p> -->
     <storagedata-component></storagedata-component>
   </div>
@@ -45,3 +45,25 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.upload input {
+  display: none;
+}
+.upload label {
+  height: 50px;
+  padding: 8px;
+  border: 0;
+  margin: 12px;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  background: #f2f3f7;
+  box-shadow:  7px 7px 7px #c6cbcf,
+              -7px -7px 7px #ffffff;
+}
+.upload label:active {
+  background: #f2f3f7;
+  box-shadow: inset  7px 7px 7px #c6cbcf,
+              inset -7px -7px 7px #ffffff;
+}
+</style>
