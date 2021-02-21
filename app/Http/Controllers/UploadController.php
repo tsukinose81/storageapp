@@ -9,13 +9,16 @@ class UploadController extends Controller
 {
     public function file(Request $request)
     {
-        // Log::debug($request->header('Authorization'));
-        // Log::debug($request->user());
-        $file_name = $request->file->getClientOriginalName();
+        // Log::debug($request->user()->user_id);
         $user_id = $request->user_id;
         $storage_name = $request->storage_name;
-        $request->file->storeAs('public/' . $user_id . '/' . $storage_name, $file_name);
-        return 'uploaded';
+        
+        if($request->user()->user_id == $user_id) {
+            $file_name = $request->file->getClientOriginalName();
+            $request->file->storeAs('public/' . $user_id . '/' . $storage_name, $file_name);
+            return 'uploaded';
+        }
+        return 'permission error';
     }
 
     public function folder(Request $request)

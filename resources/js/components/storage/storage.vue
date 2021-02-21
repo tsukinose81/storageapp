@@ -1,23 +1,36 @@
 <template>
   <div class="form upload">
     <h1>{{ $route.params.user_id + '/' + $route.params.storage_name }}</h1>
-    <input type="file" id="fileup" v-on:change="fileUpload"><label for=fileup>Upload the file</label>
+    <input type="file" id="fileup" v-if="show" v-on:change="fileUpload"><label for=fileup v-if="show">Upload the file</label>
     <!-- <p><input type="file" name="upfile[]" webkitdirectory v-on:change="folderUpload">folders</p> -->
-    <storagedata-component></storagedata-component>
+    <storagedata-component :key="resetKey"></storagedata-component>
   </div>
 </template>
 
 <script>
+const bearerToken = localStorage.getItem("api-token");
 export default {
   data: function(){
-      return {
-        fileInfo: '',
-        folderInfo: ''
-      }
-    },
+    return {
+      fileInfo: '',
+      folderInfo: '',
+      show: false,
+      resetKey: 0,
+    }
+  },
+  mounted() {
+    axios.get('/api/user_id', {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+      }}).then(response => {
+        if (response.data == this.$route.params.user_id) {
+          console.log(response)
+          this.show = true;
+        }
+      });
+  },
   methods:{
     fileUpload(event) {
-      const bearerToken = localStorage.getItem("api-token");
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append('file', file);
@@ -29,6 +42,7 @@ export default {
           Authorization: `Bearer ${bearerToken}`,
           'content-type': 'multipart/form-data',
         }}).then(response => {
+          this.resetKey++;
         // console.log(response);
       });
     },

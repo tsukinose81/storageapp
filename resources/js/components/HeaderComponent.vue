@@ -1,5 +1,6 @@
 <template>
   <div class="form">
+      <router-link v-bind:to="{name: 'root'}">Top</router-link> | 
       <router-link v-bind:to="{name: 'login'}">Login/Account</router-link> | 
       <router-link v-bind:to="{name: 'create'}">CreateStorage</router-link>
   </div>
