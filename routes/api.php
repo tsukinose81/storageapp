@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\DownloadController;
@@ -30,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/upload/folder', [UploadController::class, 'folder']);
 });
 
+Route::get('/storage_list', [UserPageController::class, 'storage_list']);
 Route::post('/storage/create', [StorageController::class, 'create']);
 Route::get('/storage/getfile', [StorageController::class, 'getfile']);
 Route::get('/download', [DownloadController::class, 'download']);
